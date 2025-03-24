@@ -1,6 +1,6 @@
 import './styles.css'
 import { useState, useEffect } from 'react'
-const Fetch = () => {
+const TarefasHome = () => {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
     fetch('http://localhost:3000/api/tarefa')
@@ -18,7 +18,6 @@ const Fetch = () => {
       <div className="container">
         <form>
           <h1>Cadastro de atividades</h1>
-          <input placeholder="Titulo"></input>
           <button type='button'>Cadastrar</button>
         </form>
       </div>
@@ -38,4 +37,4 @@ const Fetch = () => {
     </div>
   )
 };
-export default Fetch
+export default TarefasHome
