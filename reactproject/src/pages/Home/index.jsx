@@ -1,18 +1,18 @@
 import './styles.css'
-function Home() {
+import { useState, useEffect } from 'react'
+const Fetch = () => {
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/api/tarefa')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setTasks(data);
+      });
+  }, []);
 
-  const tasks = [
-    {
-      id: "1",
-      title: "Atividade 1",
-      finished: true
-    },
-    {
-      id: "2",
-      title: "Atividade 2",
-      finished: false
-    }
-  ];
   return (
     <div>
       <div className="container">
@@ -27,8 +27,9 @@ function Home() {
 
         <div className="card">
           <div>
-            <p>Titulo: {task.title}</p>
-            <p>Situação: {task.finished ? "Finalizada" : "Pendente"}</p>
+            <p>Titulo: {task.titulo}</p>
+            <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
+            <p>Aluno: {task.aluno.nome}</p>
             <button>Editar</button>
           </div>
 
@@ -36,6 +37,5 @@ function Home() {
       ))}
     </div>
   )
-}
-
-export default Home
+};
+export default Fetch
