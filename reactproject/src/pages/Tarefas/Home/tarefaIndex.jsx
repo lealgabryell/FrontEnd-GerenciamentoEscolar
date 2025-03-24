@@ -24,7 +24,7 @@ const TarefasHome = () => {
 
       {tasks.map((task) => (
 
-        <div className="card">
+        <div className="card"  key={task._id}>
           <div>
             <p>Titulo: {task.titulo}</p>
             <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
