@@ -18,7 +18,8 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-  position: relative;
+  position: relative;  
+  background: linear-gradient(45deg, #679ced, #fafafa);
 }
 
 .card-container {
@@ -43,7 +44,7 @@
 
 .edit-button-style {
   background: transparent;
-  color: rgb(85, 78, 78);
+  color: rgb(107, 105, 105);
   border: transparent;
   text-align: left;
   font-weight: bold;
@@ -60,4 +61,8 @@
 
 .cadastrar-button:hover {
   transform: scale(1.1);
+}
+
+h1 {
+  font-size: large;
 }

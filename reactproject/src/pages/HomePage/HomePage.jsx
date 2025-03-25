@@ -8,6 +8,8 @@ function HomePage() {
         Gerenciar Tarefas</Link>
       <Link to="/disciplinas" className='navLink'>
         Gerenciar Disciplinas</Link>
+      <Link to="/professores" className='navLink'>
+        Gerenciar Professores</Link>
     </div>
   )
 }

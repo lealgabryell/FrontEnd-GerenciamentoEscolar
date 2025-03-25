@@ -4,6 +4,7 @@ import LoginPage from "./pages/Login/login";
 import TarefasHome from "./pages/Tarefas/Home/tarefaIndex";
 import DisciplinasHome from "./pages/Disciplinas/Home/disciplinaIndex";
 import HomePage from "./pages/HomePage/HomePage";
+import TarefasCadastro from "./pages/Tarefas/Cadastro/tarefasCadastro";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" Component={LoginPage} exact />
         <Route path="/home" Component={HomePage} />
         <Route path="/tarefas" Component={TarefasHome} />
+        <Route path="/tarefas/cadastro" Component={TarefasCadastro} />
         <Route path="/disciplinas" Component={DisciplinasHome} />
       </Routes>
     </BrowserRouter>

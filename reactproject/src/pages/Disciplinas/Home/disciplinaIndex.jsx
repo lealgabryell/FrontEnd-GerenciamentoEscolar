@@ -36,7 +36,6 @@ const DisciplinasHome = () => {
           <p>Encerramento: {disciplina.dataFim}</p>
           <p>Tarefas:  
           {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
-          
             <ul>
               {
                 disciplina.tarefas.map((tarefa, index) => (
