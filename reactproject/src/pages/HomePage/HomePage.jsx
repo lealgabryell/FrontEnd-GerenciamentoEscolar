@@ -6,6 +6,8 @@ function HomePage() {
     <div className='link-container'>
       <Link to="/tarefas" className='navLink'>
         Gerenciar Tarefas</Link>
+      <Link to="/disciplinas" className='navLink'>
+        Gerenciar Disciplinas</Link>
     </div>
   )
 }

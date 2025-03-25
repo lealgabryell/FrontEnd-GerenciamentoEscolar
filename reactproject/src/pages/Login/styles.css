@@ -3,7 +3,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, #f3f1f1, #f0d6a1);
+  background: linear-gradient(45deg, #fafafa, #196dec   );
 }
 
 .login-box {
@@ -51,13 +51,13 @@
 }
 
 .input-field:focus {
-  border-color: #edd8bb;
+  border-color: #196dec;
   box-shadow: 0 0 5px rgba(237, 216, 187, 0.5);
 }
 
 .login-button {
   width: 100%;
-  background: #edd8bb;
+  background: #196dec;
   color: white;
   font-weight: bold;
   padding: 0.5rem;

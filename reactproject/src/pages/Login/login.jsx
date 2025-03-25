@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import "./styles.css";
-import { Link, Navigate } from "react-router-dom";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -18,13 +19,14 @@ export default function LoginPage() {
         body: JSON.stringify({ email, senha }),
       });
 
-      if (!response) {
+      if (!response.ok) {
         throw new Error("Erro ao fazer login. Verifique suas credenciais.");
+      } else {
+        const data = await response.json();
+        document.cookie = `authToken=${data.token}; path=/; max-age=604800; Secure`;
+        console.log(data, "Login realizado com sucesso!");
+        navigate("/home");
       }
-
-      const data = await response.json();
-      document.cookie = `authToken=${data.token}; path=/; max-age=604800; Secure`;
-      console.log(data, "Login realizado com sucesso!");
     } catch (err) {
       setError(err.message);
     }
@@ -35,11 +37,7 @@ export default function LoginPage() {
       <div className="login-box">
         <h2 className="login-title">Login</h2>
         {error && <p className="login-error">{error}</p>}
-        <form onSubmit={() => {
-          handleSubmit,
-            <Navigate to={'/login/home'} />
-        }
-        } className="login-form">
+        <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
             <label className="input-label">Email</label>
             <input
