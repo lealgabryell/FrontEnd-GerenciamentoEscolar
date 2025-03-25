@@ -14,8 +14,8 @@ const TarefasHome = () => {
   }, []);
 
   return (
-    <div>
-      <div className="container">
+    <div className="container">
+      <div>
         <form>
           <h1>Cadastro de atividades</h1>
           <button type='button'>Cadastrar</button>
@@ -24,7 +24,7 @@ const TarefasHome = () => {
 
       {tasks.map((task) => (
 
-        <div className="card"  key={task._id}>
+        <div className="card" key={task._id}>
           <div>
             <p>Titulo: {task.titulo}</p>
             <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
