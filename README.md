@@ -77,9 +77,10 @@ Existem 6 rotas de gerenciamentoÇ
 ```
 Lógica de negócios:
 ```
-Algumas rotas estão à mercer de um token de autorização que é passado pelos cookies do cabeçalho da aplicação.
-Não se preocupe, ao fazer login, sue token é gerado automaticamente e ele já passado para os cabeçalhos sempre que você entrar em uma nova página ou renderizar um componente na sua tela.
-Aqui está uma demonstração dos relacionamentos entre as entidades dessa aplicação:
+- Algumas rotas estão à mercer de um token de autorização que é passado pelos cookies do cabeçalho da aplicação.
+- Não se preocupe, ao fazer login, sue token é gerado automaticamente e ele já passado para os cabeçalhos
+sempre que você entrar em uma nova página ou renderizar um componente na sua tela.
+- Aqui está uma demonstração dos relacionamentos entre as entidades dessa aplicação:
 ```
 | Entidade 1      | Entidade 2                          |Relacionamento                          |
 |-----------------|-------------------------------------|-------------------------------------|
