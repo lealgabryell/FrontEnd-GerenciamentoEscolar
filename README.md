@@ -60,7 +60,8 @@ Para usar GerenciamentoEscolar, siga estas etapas:
 
 Faça o login:
 ```
-Se for a sua primeira vez, provavelmente você não terá um login personalizado, então deixei um login global onde você pode entrar e criar sua própria conta, ou utilizar o projeto a partir desse login global:
+Se for a sua primeira vez, provavelmente você não terá um login personalizado, então deixei
+um login global onde você pode entrar e criar sua própria conta, ou utilizar o projeto a partir desse login global:
 email: adm
 senha: adm
 ```
