@@ -34,20 +34,22 @@ const DisciplinasHome = () => {
           <p>Disciplina: {disciplina.nome}</p>
           <p>Descrição: {disciplina.descricao}</p>
           <p>Encerramento: {disciplina.dataFim}</p>
-          <p>Tarefas:</p>
-          {disciplina.tarefas.length == 0  ? "Disciplina sem tarefas" : 
-          <ul>
-            {
-              disciplina.tarefas.map((tarefa, index) => (
-                <li key={index}>
-                  <p>Nome: {tarefa.nome}</p>
-                  <p>Situação: {tarefa.concluida ? 'Finalizada' : 'Pendente'}</p>
-                  <p>Aluno: {tarefa.aluno.nome}</p>
-                </li>
-              ))
-            }
-          </ul>
-}
+          <p>Tarefas:  
+          {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
+          
+            <ul>
+              {
+                disciplina.tarefas.map((tarefa, index) => (
+                  <li key={index}>
+                    <p>Nome: {tarefa.nome}</p>
+                    <p>Situação: {tarefa.concluida ? 'Finalizada' : 'Pendente'}</p>
+                    <p>Aluno: {tarefa.aluno.nome}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          }
+          </p>
         </div>
       ))}
 

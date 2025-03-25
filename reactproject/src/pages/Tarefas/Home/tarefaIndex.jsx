@@ -1,5 +1,7 @@
 import './styles.css'
 import { useState, useEffect } from 'react'
+import Trash from '../../../assets/trash.svg'
+
 const TarefasHome = () => {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
@@ -16,24 +18,28 @@ const TarefasHome = () => {
   return (
     <div className="container">
       <div>
-        <form>
-          <h1>Cadastro de atividades</h1>
-          <button type='button'>Cadastrar</button>
-        </form>
+        <h1>Lobby de atividades</h1>
+        <button type='button' className='cadastrar-button'>Cadastrar</button>
+
       </div>
+      <div className="tasks">
+        {tasks.map((task) => (
 
-      {tasks.map((task) => (
-
-        <div className="card" key={task._id}>
-          <div>
-            <p>Titulo: {task.titulo}</p>
-            <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
-            <p>Aluno: {task.aluno.nome}</p>
-            <button>Editar</button>
+          <div className="card" key={task._id}>
+            <div className='card-container'>
+              <p>Titulo: {task.titulo}</p>
+              <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
+              <p>Aluno: {task.aluno.nome}</p>
+              <button className='edit-button-style'>
+                <a>Editar</a></button>
+            </div>
+            <button className='delete-button-style'>
+              {" "}
+              <img src={Trash} width={18} height={18} />
+            </button>
           </div>
-
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 };
