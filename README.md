@@ -52,6 +52,10 @@ Abra sua IDE favorita mas dê preferência ao VS Code (digite o seguinte comando
 ```
 code .
 ```
+Execute o comando no terminal para rodar o projeto:
+```
+npm run dev
+```
 O ESPAÇO ANTES DO PONTO FINAL É IMPORTANTE
 
 ## ☕ Usando GerenciamentoEscolar
