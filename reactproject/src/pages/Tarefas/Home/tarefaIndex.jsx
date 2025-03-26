@@ -59,26 +59,30 @@ const TarefasHome = () => {
             <div className='card-container'>
               <h1>{task.titulo}</h1>
               <p>
-                Situação: {task.concluida ?
-                  <ul><li><h5>Finalizada</h5></li></ul> :
-                  <ul><li><h5>Pendente</h5></li></ul>}
+                Situação:
               </p>
+              {task.concluida ?
+                <ul><li><h5>Finalizada</h5></li></ul> :
+                <ul><li><h5>Pendente</h5></li></ul>}
+
               <p>
-                Turmas: {task.turmas.map((turma, index) =>
-                  <ul>
-                    <li key={index}>
-                      <h5>{turma.nome} - {turma.turno}</h5>
-                    </li>
-                  </ul>
-                )}
+                Turmas:
               </p>
-              <p>Disciplinas: {task.disciplinas.map((disciplina, index) =>
-                <ul>
-                  <li key={index}>
+              {task.turmas.map((turma, index) =>
+                <ul key={index}>
+                  <li >
+                    <h5>{turma.nome} - {turma.turno}</h5>
+                  </li>
+                </ul>
+              )}
+
+              <p>Disciplinas:</p> {task.disciplinas.map((disciplina, index) =>
+                <ul key={index}>
+                  <li >
                     <h5>{disciplina.nome}</h5>
                   </li>
                 </ul>
-              )}</p>
+              )}
               <button className='edit-button-style'>
                 <a>Editar</a>
               </button>

@@ -4,6 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
+.disciplinas{
+  display: grid;
+  grid-template-columns:  repeat(3, 1fr);
+  gap: 2rem;
+}
 
 .edit-button-style {
   background: transparent;
@@ -26,6 +31,7 @@
   justify-content: baseline;
   padding: 2em;
   text-align: center;
+  width: 30rem;
 }
 
 .cadastrar-button {
