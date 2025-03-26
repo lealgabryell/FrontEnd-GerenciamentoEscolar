@@ -1,6 +1,7 @@
 import './styles.css'
-import { useEffect, useState } from 'react'
-import Cookies from 'universal-cookie'
+import { useEffect, useState } from 'react';
+import Cookies from 'universal-cookie';
+import Trash from '../../../assets/trash.svg'
 
 const cookies = new Cookies();
 const DisciplinasHome = () => {
@@ -24,34 +25,45 @@ const DisciplinasHome = () => {
 
       <div>
         <form>
-          <h1>Cadastro de disciplinas</h1>
-          <button type='button'>Cadastrar</button>
+          <h1>Lobby de disciplinas</h1>
+          <button className="cadastrar-button" type='button'>Cadastrar</button>
         </form>
       </div>
-
-      {disciplinas.map((disciplina) => (
-        <div className="card" key={disciplina._id}>
-          <p>Disciplina: {disciplina.nome}</p>
-          <p>Descrição: {disciplina.descricao}</p>
-          <p>Encerramento: {disciplina.dataFim}</p>
-          <p>Tarefas:  
-          {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
-            <ul>
-              {
-                disciplina.tarefas.map((tarefa, index) => (
-                  <li key={index}>
-                    <p>Nome: {tarefa.nome}</p>
-                    <p>Situação: {tarefa.concluida ? 'Finalizada' : 'Pendente'}</p>
-                    <p>Aluno: {tarefa.aluno.nome}</p>
-                  </li>
-                ))
-              }
-            </ul>
-          }
-          </p>
-        </div>
-      ))}
-
+      <div className="disciplinas">
+        {disciplinas.map((disciplina) => (
+          <div className="card" key={disciplina._id}>
+            <div className="card-container">
+              <p>Disciplina: {disciplina.nome}</p>
+              <p>Descrição: {disciplina.descricao}</p>
+              <p>Encerramento: {disciplina.dataFim}</p>
+              <p>Tarefas:
+                {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
+                  <ul>
+                    {
+                      disciplina.tarefas.map((tarefa, index) => (
+                        <div className="tarefas-container">
+                          <li><h5>Nome da tarefa:</h5> {tarefa.titulo}</li>
+                          <li><h5>Situação da tarefa:</h5> {tarefa.concluida ? 'Finalizada' : 'Pendente'}</li>
+                          <li><h5>Turma: </h5>{tarefa.turma.map((turma, index) => {
+                            <h5 key={index}>{turma.nome}</h5>
+                          })}</li>
+                        </div>
+                      ))
+                    }
+                  </ul>
+                }
+              </p>
+              <button className="edit-button-style">
+                <a>Editar</a>
+              </button>
+            </div>
+            <button className='delete-button-style' onClick={() => handleDelete(task._id)}>
+              {" "}
+              <img src={Trash} width={18} height={18} />
+            </button>
+          </div>
+        ))}
+      </div>
     </div >
   )
 }

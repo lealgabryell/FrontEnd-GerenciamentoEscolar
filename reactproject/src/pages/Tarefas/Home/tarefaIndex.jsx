@@ -1,6 +1,6 @@
-import './styles.css'
-import { useState, useEffect } from 'react'
-import Trash from '../../../assets/trash.svg'
+import './styles.css';
+import { useState, useEffect } from 'react';
+import Trash from '../../../assets/trash.svg';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
@@ -54,20 +54,26 @@ const TarefasHome = () => {
       </div>
       <div className="tasks">
         {tasks.map((task, index) => (
-            <div className="card" key={index}>
-              <div className='card-container'>
-                <h1>{task.titulo}</h1>
-                <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
-                <p>Turma: {task.turma.nome}</p>
-                <button className='edit-button-style'>
-                  <a>Editar</a>
-                </button>
-              </div>
-              <button className='delete-button-style' onClick={() => handleDelete(task._id)}>
-                {" "}
-                <img src={Trash} width={18} height={18} />
+          <div className="card" key={index}>
+            <div className='card-container'>
+              <h1>{task.titulo}</h1>
+              <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
+              <p>Turmas: {turmas.map((turma, index) => {
+                <div className="turmas" key={index}>
+                  <ul>
+                    <li>{turma.nome}</li>
+                  </ul>
+                </div>
+              })}</p>
+              <button className='edit-button-style'>
+                <a>Editar</a>
               </button>
             </div>
+            <button className='delete-button-style' onClick={() => handleDelete(task._id)}>
+              {" "}
+              <img src={Trash} width={18} height={18} />
+            </button>
+          </div>
         ))}
       </div>
 

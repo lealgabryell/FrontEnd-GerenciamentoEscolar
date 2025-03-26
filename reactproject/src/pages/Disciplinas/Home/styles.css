@@ -1,11 +1,53 @@
 .container {
-  min-height: 100vh ;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+.edit-button-style {
+  background: transparent;
+  color: rgb(107, 105, 105);
+  border: transparent;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.disciplinas {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
   padding: 2em;
   text-align: center;
+}
+
+.cadastrar-button {
+  border: transparent;
+  width: 15rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cadastrar-button:hover {
+  transform: scale(1.1);
+}
+ul{
+  list-style: none;
+}
+
+.tarefas-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  margin-top: 8px;
+  border: solid 1px black;
+  padding: 2px;
 }

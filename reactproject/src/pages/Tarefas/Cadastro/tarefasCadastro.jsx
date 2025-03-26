@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 
 export default function TarefasCadastro() {
   const [titulo, setTitulo] = useState("");
-  const [turmaId, setTurmaId] = useState("");
+  const [turmasIds, setTurmasIds] = useState([]);
   const [turmas, setTurmas] = useState(""); //Turmas que já existem no bd
   const [disciplinasIds, setDisciplinasIds] = useState([]);
   const [disciplinas, setDisciplinas] = useState([]); //Disciplinas que ja existem no bd
@@ -43,7 +43,7 @@ export default function TarefasCadastro() {
   };
   // Função para atualizar os IDs das turmas selecionadas
   const handleTurmaChange = (id) => {
-    setTurmaId((prev) =>
+    setTurmasIds((prev) =>
       prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
     );
   };
@@ -60,7 +60,7 @@ export default function TarefasCadastro() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({ titulo, turmaId, disciplinasIds })
+          body: JSON.stringify({ titulo, turmasIds, disciplinasIds })
         }
       );
       if (!response.ok) {
@@ -99,7 +99,7 @@ export default function TarefasCadastro() {
                   type="checkbox"
                   value={turma._id}
                   onChange={() => handleTurmaChange(turma._id)}
-                  checked={turmaId.includes(turma._id)}
+                  checked={turmasIds.includes(turma._id)}
                 />
                 {turma.nome} - {turma._id}
               </label>
