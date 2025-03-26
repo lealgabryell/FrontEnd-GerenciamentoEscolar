@@ -9,8 +9,8 @@
 }
 
 .tasks {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -18,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-  position: relative;  
+  position: relative;
   background: linear-gradient(45deg, #679ced, #fafafa);
 }
 
@@ -65,4 +65,11 @@
 
 h1 {
   font-size: large;
+}
+
+li {
+  padding-left: 1rem;
+}
+ul{
+  list-style: circle;
 }

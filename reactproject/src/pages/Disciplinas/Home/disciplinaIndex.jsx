@@ -30,29 +30,31 @@ const DisciplinasHome = () => {
         </form>
       </div>
       <div className="disciplinas">
-        {disciplinas.map((disciplina) => (
-          <div className="card" key={disciplina._id}>
+        {disciplinas.map((disciplina, index) => (
+          <div className="card" key={index}>
             <div className="card-container">
               <p>Disciplina: {disciplina.nome}</p>
               <p>Descrição: {disciplina.descricao}</p>
               <p>Encerramento: {disciplina.dataFim}</p>
-              <p>Tarefas:
+              <p>Tarefas: </p>
                 {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
-                  <ul>
-                    {
-                      disciplina.tarefas.map((tarefa, index) => (
-                        <div className="tarefas-container">
-                          <li><h5>Nome da tarefa:</h5> {tarefa.titulo}</li>
-                          <li><h5>Situação da tarefa:</h5> {tarefa.concluida ? 'Finalizada' : 'Pendente'}</li>
-                          <li><h5>Turma: </h5>{tarefa.turma.map((turma, index) => {
-                            <h5 key={index}>{turma.nome}</h5>
-                          })}</li>
-                        </div>
-                      ))
-                    }
-                  </ul>
+                  <div className="div">
+                    <ul>
+                      {
+                        disciplina.tarefas.map((tarefa, index) => (
+                          <div className="tarefas-container" key={index}>
+                            <li><h5>Nome da tarefa:</h5> {tarefa.titulo}</li>
+                            <li><h5>Situação da tarefa:</h5> {tarefa.concluida ? 'Finalizada' : 'Pendente'}</li>
+                            <li><h5>Turma: </h5>{tarefa.turmas.map((turma, index) => {
+                              <h5 key={index}>{turma.nome}</h5>
+                            })}</li>
+                          </div>
+                        ))
+                      }
+                    </ul>
+                  </div>
                 }
-              </p>
+             
               <button className="edit-button-style">
                 <a>Editar</a>
               </button>

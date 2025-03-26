@@ -10,6 +10,7 @@ const TarefasHome = () => {
   const cookies = new Cookies();
   const token = cookies.get("authToken");
   const [tasks, setTasks] = useState([]);
+  const [turmas, setTurmas] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/tarefa')
@@ -57,14 +58,27 @@ const TarefasHome = () => {
           <div className="card" key={index}>
             <div className='card-container'>
               <h1>{task.titulo}</h1>
-              <p>Situação: {task.concluida ? "Finalizada" : "Pendente"}</p>
-              <p>Turmas: {turmas.map((turma, index) => {
-                <div className="turmas" key={index}>
+              <p>
+                Situação: {task.concluida ?
+                  <ul><li><h5>Finalizada</h5></li></ul> :
+                  <ul><li><h5>Pendente</h5></li></ul>}
+              </p>
+              <p>
+                Turmas: {task.turmas.map((turma, index) =>
                   <ul>
-                    <li>{turma.nome}</li>
+                    <li key={index}>
+                      <h5>{turma.nome} - {turma.turno}</h5>
+                    </li>
                   </ul>
-                </div>
-              })}</p>
+                )}
+              </p>
+              <p>Disciplinas: {task.disciplinas.map((disciplina, index) =>
+                <ul>
+                  <li key={index}>
+                    <h5>{disciplina.nome}</h5>
+                  </li>
+                </ul>
+              )}</p>
               <button className='edit-button-style'>
                 <a>Editar</a>
               </button>

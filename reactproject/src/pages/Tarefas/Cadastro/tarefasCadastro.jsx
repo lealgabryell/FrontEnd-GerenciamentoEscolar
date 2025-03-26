@@ -91,7 +91,7 @@ export default function TarefasCadastro() {
           required />
 
         <div className="disciplinas-container">
-          <h4>Selecione as disciplinas:</h4>
+          <h4>Selecione as turmas:</h4>
           {turmas.length > 0 ? (
             turmas.map((turma) => (
               <label key={turma._id} className="checkbox-label">
