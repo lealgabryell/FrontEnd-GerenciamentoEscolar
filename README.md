@@ -32,7 +32,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-- Você instalou a versão mais recente de `<node.JS / React / Vite>`
+- Você instalou a versão mais recente de `<node.JS / Git>`
 - Você tem uma máquina `Windows`.
 - Clone também o backend do projeto, siga as instruções do guia e coloque o projeto no ar: <a href="https://github.com/lealgabryell/API-GerenciamentoEscolar-Node">Clique Aqui</a>
 ## 🚀 Instalando o GerenciamentoEscolar
