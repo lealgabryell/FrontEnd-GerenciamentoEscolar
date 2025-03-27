@@ -2,9 +2,11 @@ import './styles.css'
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import Trash from '../../../assets/trash.svg'
+import { useNavigate } from 'react-router-dom';
 
 const cookies = new Cookies();
 const DisciplinasHome = () => {
+  const navigate = useNavigate();
   const [disciplinas, setDisciplinas] = useState([]);
   const token = cookies.get("authToken");
   useEffect(() => {
@@ -43,7 +45,7 @@ const DisciplinasHome = () => {
       <div>
         <form>
           <h1>Lobby de disciplinas</h1>
-          <button className="cadastrar-button" type='button'>Cadastrar</button>
+          <button className="cadastrar-button" type='button' onClick={() => { navigate("/disciplinas/cadastro") }}>Cadastrar</button>
         </form>
       </div>
       {disciplinas.length == 0 ? <p>Não há disciplinas registradas no sistema!</p> :

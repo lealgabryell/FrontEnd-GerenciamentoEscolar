@@ -4,9 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
-.disciplinas{
+
+.disciplinas {
   display: grid;
-  grid-template-columns:  repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -19,11 +20,7 @@
   cursor: pointer;
 }
 
-.disciplinas {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+
 
 .card {
   display: flex;
@@ -45,7 +42,8 @@
 .cadastrar-button:hover {
   transform: scale(1.1);
 }
-ul{
+
+ul {
   list-style: none;
 }
 

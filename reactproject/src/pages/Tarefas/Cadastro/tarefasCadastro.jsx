@@ -66,7 +66,6 @@ export default function TarefasCadastro() {
       if (!response.ok) {
         throw new Error("Não foi possível cadastrar essa atividade")
       } else {
-        const data = await response.json();
         navigate("/tarefas");
       }
     } catch (err) {
@@ -101,7 +100,7 @@ export default function TarefasCadastro() {
                   onChange={() => handleTurmaChange(turma._id)}
                   checked={turmasIds.includes(turma._id)}
                 />
-                {turma.nome} - {turma._id}
+                {turma.nome} - <a>{turma._id}</a>
               </label>
             ))
           ) : (
@@ -119,7 +118,7 @@ export default function TarefasCadastro() {
                   onChange={() => handleDisciplinaChange(disciplina._id)}
                   checked={disciplinasIds.includes(disciplina._id)}
                 />
-                {disciplina.nome} - {disciplina._id}
+                {disciplina.nome} - <a>{disciplina._id}</a>
               </label>
             ))
           ) : (

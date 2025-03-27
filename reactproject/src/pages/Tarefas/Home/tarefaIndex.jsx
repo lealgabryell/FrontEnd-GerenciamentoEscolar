@@ -10,7 +10,6 @@ const TarefasHome = () => {
   const cookies = new Cookies();
   const token = cookies.get("authToken");
   const [tasks, setTasks] = useState([]);
-  const [turmas, setTurmas] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/tarefa')
