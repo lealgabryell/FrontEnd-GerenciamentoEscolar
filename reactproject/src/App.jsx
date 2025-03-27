@@ -6,6 +6,7 @@ import DisciplinasHome from "./pages/Disciplinas/Home/disciplinaIndex";
 import HomePage from "./pages/HomePage/HomePage";
 import TarefasCadastro from "./pages/Tarefas/Cadastro/tarefasCadastro";
 import DisciplinaCadastro from "./pages/Disciplinas/Cadastro/disciplinaCadastro";
+import TarefasEditar from "./pages/Tarefas/Editar/tarefasEditar";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" Component={LoginPage} exact />
         <Route path="/home" Component={HomePage} />
         <Route path="/tarefas" Component={TarefasHome} />
+        <Route path="/tarefas/editar/:id" Component={TarefasEditar} />
         <Route path="/tarefas/cadastro" Component={TarefasCadastro} />
         <Route path="/disciplinas" Component={DisciplinasHome} />
         <Route path="/disciplinas/cadastro" Component={DisciplinaCadastro} />

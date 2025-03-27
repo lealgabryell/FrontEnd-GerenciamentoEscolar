@@ -75,14 +75,14 @@ const TarefasHome = () => {
                 </ul>
               )}
 
-              <p>Disciplinas:</p> {task.disciplinas.map((disciplina, index) =>
+              <p>Disciplinas:</p> {task.disciplinas.length == 0 ? <ul><li><h5>Nenhuma disciplina associada</h5></li></ul> : (task.disciplinas.map((disciplina, index) =>
                 <ul key={index}>
                   <li >
                     <h5>{disciplina.nome}</h5>
                   </li>
                 </ul>
-              )}
-              <button className='edit-button-style'>
+              ))}
+              <button className='edit-button-style' onClick={() => navigate(`/tarefas/editar/${task._id}`)}>
                 <a>Editar</a>
               </button>
             </div>
@@ -94,7 +94,7 @@ const TarefasHome = () => {
         ))}
       </div>
 
-    </div>
+    </div >
   )
 };
 export default TarefasHome
