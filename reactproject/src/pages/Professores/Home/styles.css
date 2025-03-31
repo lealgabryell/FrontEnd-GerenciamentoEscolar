@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.professores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.edit-button-style {
+  background: transparent;
+  color: rgb(107, 105, 105);
+  border: transparent;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}

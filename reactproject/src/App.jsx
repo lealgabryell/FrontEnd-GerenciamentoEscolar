@@ -8,6 +8,7 @@ import TarefasCadastro from "./pages/Tarefas/Cadastro/tarefasCadastro";
 import DisciplinaCadastro from "./pages/Disciplinas/Cadastro/disciplinaCadastro";
 import TarefasEditar from "./pages/Tarefas/Editar/tarefasEditar";
 import DisciplinasEditar from "./pages/Disciplinas/Editar/disciplinasEditar";
+import ProfessoresHome from "./pages/Professores/Home/professoresIndex";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" Component={LoginPage} exact />
         <Route path="/home" Component={HomePage} />
+        <Route path="/professores" Component={ProfessoresHome} />
         <Route path="/tarefas" Component={TarefasHome} />
         <Route path="/tarefas/editar/:id" Component={TarefasEditar} />
         <Route path="/tarefas/cadastro" Component={TarefasCadastro} />
