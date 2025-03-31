@@ -25,7 +25,6 @@ export default function TarefasEditar() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setTitulo(data.titulo);
         setTurmasIds(data.turmas?.map(turma => turma._id) || []);
         setDisciplinasIds(data.disciplinas?.map(disciplina => disciplina._id) || []);
         setConcluida(data.concluida);
