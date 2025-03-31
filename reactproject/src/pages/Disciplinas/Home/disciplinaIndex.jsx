@@ -56,7 +56,7 @@ const DisciplinasHome = () => {
                 <h5>Disciplina:</h5> <p>{disciplina.nome}</p>
                 <h5>Descrição:</h5> <p>{disciplina.descricao}</p>
                 <h5>Encerramento:</h5> <p>{new Date(disciplina.dataFim).toLocaleDateString('pt-BR')}</p>
-                <p>Tarefas: </p>
+                <h5>Tarefas: </h5>
                 {disciplina.tarefas.length == 0 ? "Disciplina sem tarefas" :
                   <div className="div">
                     <ul>

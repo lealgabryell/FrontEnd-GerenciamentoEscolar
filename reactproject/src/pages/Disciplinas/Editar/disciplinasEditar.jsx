@@ -14,6 +14,34 @@ function DisciplinaEditar() {
   const cookies = new Cookies();
   const token = cookies.get("authToken");
 
+  useEffect(() => {
+    const fetchDisciplina = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/disciplina/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error("Erro ao buscar disciplina");
+        }
+        const data = await response.json();
+        setNome(data.nome);
+        setDescricao(data.descricao);
+
+        // Convertendo dataFim para o formato adequado para input date
+        const dataFormatada = data.dataFim ? new Date(data.dataFim).toISOString().split("T")[0] : "";
+        setDataFim(dataFormatada);
+        setDisciplina(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchDisciplina();
+  }, [id, token]); // Agora o useEffect só roda quando o id ou token mudar
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -31,29 +59,14 @@ function DisciplinaEditar() {
         }),
       });
       if (!response.ok) {
-        throw new Error("Não foi possível cadastrar essa disciplina")
+        throw new Error("Não foi possível cadastrar essa disciplina");
       } else {
-        const data = await response.json();
-        console.log(data);
         navigate("/disciplinas");
       }
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-  }
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/api/disciplina/${id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setDisciplina(data);
-      })
-  })
+  };
   return (
     <div className="cadastro-container">
       <h1>Cadastro de Disciplina</h1>
@@ -64,15 +77,17 @@ function DisciplinaEditar() {
           value={nome}
           className="input-field"
           onChange={(e) => setNome(e.target.value)}
-          placeholder={`${disciplina.nome}`}
+          placeholder={disciplina.nome || ""}
           required />
         <input type="text"
           value={descricao}
           className="input-field"
           onChange={(e) => setDescricao(e.target.value)}
-          placeholder={`${disciplina.descricao}`}
+          placeholder={disciplina.descricao || ""}
         />
-        <label className='date-label'>Data de encerramento da disciplina (atual: {new Date(disciplina.dataFim).toLocaleDateString()})</label>
+        <label className="date-label">
+          Data de encerramento da disciplina (atual: {disciplina.dataFim ? new Date(disciplina.dataFim).toLocaleDateString() : "Não definida"})
+        </label>
         <input type="date"
           value={dataFim}
           className="input-field"
