@@ -71,7 +71,7 @@ const DisciplinasHome = () => {
                     </ul>
                   </div>
                 }
-                <button className="edit-button-style">
+                <button className='edit-button-style' onClick={() => navigate(`/disciplinas/editar/${disciplina._id}`)}>
                   <a>Editar</a>
                 </button>
               </div>

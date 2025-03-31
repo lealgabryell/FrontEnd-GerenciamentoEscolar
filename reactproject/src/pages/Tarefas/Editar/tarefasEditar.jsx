@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './styles.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'universal-cookie'
 
-export default function TarefasCadastro() {
+export default function TarefasEditar() {
   const { id } = useParams();
 
   const [tarefa, setTarefa] = useState({});

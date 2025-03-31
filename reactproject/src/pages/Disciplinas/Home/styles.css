@@ -8,7 +8,8 @@
 .disciplinas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1rem;
+  padding: 0.5rem;
 }
 
 .edit-button-style {
@@ -21,14 +22,13 @@
 }
 
 
-
 .card {
   display: flex;
   flex-direction: column;
   justify-content: baseline;
   padding: 2em;
   text-align: center;
-  width: 30rem;
+  width: 24rem;
 }
 
 .cadastrar-button {
