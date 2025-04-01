@@ -3,8 +3,10 @@ import './styles.css'
 
 import Trash from '../../../assets/trash.svg'
 import Cookies from 'universal-cookie'
+import { useNavigate } from 'react-router-dom';
 
 function ProfessoresHome() {
+  const navigate = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get("authToken");
   const [professores, setProfessores] = useState([]);
@@ -31,7 +33,8 @@ function ProfessoresHome() {
         <h1>Lobby de Professores</h1>
         <button className="cadastrar-button">Cadastrar</button>
       </div>
-      {professores.length == 0 ? <p>Não há professores registrados no sistema!</p> :
+      
+      {professores.length == 0 ? <>{error && <p className="error-message">{error}</p>}</> :
         <div className="professores">
           {professores.map((professor, index) => (
             <div className="card" key={index}>
@@ -44,7 +47,9 @@ function ProfessoresHome() {
                       <li key={index}><h5>{disciplina.nome}</h5></li>
                     ))}
                   </ul>}
-                <button className="edit-button-style">Editar</button>
+                <button className='edit-button-style' onClick={() => navigate(`/professores/editar/${professor._id}`)}>
+                  <a>Editar</a>
+                </button>
               </div>
               <button className='delete-button-style'>
                 {" "}

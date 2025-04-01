@@ -94,7 +94,7 @@ function DisciplinaEditar() {
           onChange={(e) => setDataFim(e.target.value)}
         />
         <button type="submit" className="submit-button">
-          Cadastrar Disciplina
+          Salvar Disciplina
         </button>
       </form>
     </div>

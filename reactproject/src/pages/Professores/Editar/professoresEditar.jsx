@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import './styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie';
 
-export default function TarefasEditar() {
-  const { id } = useParams();
-
-  const [tarefa, setTarefa] = useState({});
-  const [concluida, setConcluida] = useState(false);
-  const [titulo, setTitulo] = useState("");
-  const [turmasIds, setTurmasIds] = useState([]);
-  const [turmas, setTurmas] = useState(""); //Turmas que já existem no bd
-  const [disciplinasIds, setDisciplinasIds] = useState([]);
-  const [disciplinas, setDisciplinas] = useState([]); //Disciplinas que ja existem no bd
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+function ProfessoresEditar() {
   const cookies = new Cookies();
   const token = cookies.get("authToken");
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+  const [professor, setProfessor] = useState({});
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [turmas, setTurmas] = useState([]);
+  const [turmasIds, setTurmasIds] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
+  const [disciplinasIds, setDisciplinasIds] = useState([]);
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
+
   useEffect(() => {
     const fetchProfessor = async () => {
-      const response = await fetch(`http://localhost:3000/api/tarefa/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/professor/${id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`
@@ -26,15 +29,17 @@ export default function TarefasEditar() {
       })
         .then((res) => res.json())
         .then((data) => {
-          setTurmasIds(data.turmas?.map(turma => turma._id) || []);
-          setDisciplinasIds(data.disciplinas?.map(disciplina => disciplina._id) || []);
-          setConcluida(data.concluida);
-          setTarefa(data)
+          setTurmas(data.turmas?.map(turma => turma._id) || []);
+          setDisciplinas(data.disciplinas?.map(disciplina => disciplina._id) || []);
+          setEmail(data.email);
+          setNome(data.nome);
+          setProfessor(data)
         })
-        .catch((err) => console.error('Erro ao carregar tarefa:', err));
+        .catch((err) => console.error('Erro ao carregar professor:', err));
     }
     fetchProfessor();
   }, [token, id]);
+
   useEffect(() => {
     fetch('http://localhost:3000/api/disciplina', {
       headers: {
@@ -44,11 +49,9 @@ export default function TarefasEditar() {
       .then((res) => res.json())
       .then((data) => {
         setDisciplinas(data);
-        setTitulo(data.titulo);
       })
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
   }, []);
-
   useEffect(() => {
     fetch('http://localhost:3000/api/turma', {
       headers: {
@@ -61,7 +64,6 @@ export default function TarefasEditar() {
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
   }, []);
 
-  // Função para atualizar os IDs das disciplinas selecionadas
   const handleDisciplinaChange = (id) => {
     setDisciplinasIds((prev) =>
       prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
@@ -73,66 +75,56 @@ export default function TarefasEditar() {
       prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
     );
   };
-  const handleConcluidaChange = () => {
-    setConcluida((prev) => !prev);
-  };
 
-  // Função para atualizar o título da tarefa
-  const handleTituloChange = (e) => {
-    setTitulo(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await fetch(`http://localhost:3000/api/tarefa/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ titulo, concluida, turmasIds, disciplinasIds })
-        }
-      );
+      const response = await fetch(`http://localhost:3000/api/professor/${id}`, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          disciplinas,
+          turmas
+        }),
+      });
       if (!response.ok) {
-        throw new Error("Não foi possível editar essa tarefa")
+        throw new Error("Não foi possível cadastrar essa disciplina");
       } else {
-        navigate("/tarefas");
+        navigate("/professores");
       }
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
   }
-
   return (
-    <div className='cadastro-container'>
-      <h1>Editar Tarefa</h1>
-      <h4>Preencha os campos abaixo:</h4>
-
+    <div className="container">
+      <div>
+        <h1>Editar Professor</h1>
+        <h4>Preencha os campos abaixo</h4>
+      </div>
       {error && <p className="error-message">{error}</p>}
-
-      <form onSubmit={handleSubmit} className="form-container">
-        <input
-          type='text'
+      <form onSubmit={() => handleSubmit} className="form-container">
+        <label className='label'><h5>Nome:</h5></label>
+        <input type="text"
+          value={nome}
           className="input-field"
-          value={titulo}
-          onChange={handleTituloChange}
-          placeholder={`${tarefa.titulo}`}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder={professor.nome || ""}
+          required />
+        <label className='label'><h5>Email:</h5></label>
+        <input type="email"
+          value={email}
+          className="input-field"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={professor.email || ""}
         />
-        <div className="checkbox-container">
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              checked={concluida}
-              onChange={handleConcluidaChange}
-            />
-            Tarefa Concluída
-          </label>
-        </div>
-
         <div className="disciplinas-container">
           <h4>Selecione as turmas:</h4>
           {turmas.length > 0 ? (
@@ -169,11 +161,12 @@ export default function TarefasEditar() {
             <p>Carregando disciplinas...</p>
           )}
         </div>
-
         <button type="submit" className="submit-button">
-          Salvar Tarefa
+          Salvar professor
         </button>
       </form>
     </div>
   )
 }
+
+export default ProfessoresEditar

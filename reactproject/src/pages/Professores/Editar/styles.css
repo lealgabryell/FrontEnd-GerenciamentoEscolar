@@ -1,0 +1,9 @@
+.label {
+  display: flex;
+  text-align: justify;
+}
+
+.disciplinas-container {
+  display: flex;
+  text-align: justify;
+}
