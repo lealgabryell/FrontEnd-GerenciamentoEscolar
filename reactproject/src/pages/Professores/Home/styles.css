@@ -1,13 +1,27 @@
 .container {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cadastrar-button {
+  border: transparent;
+  width: 15rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cadastrar-button:hover {
+  transform: scale(1.1);
 }
 
 .professores {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  padding: 0.5rem;
 }
 
 .edit-button-style {
@@ -17,4 +31,13 @@
   text-align: left;
   font-weight: bold;
   cursor: pointer;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  padding: 2em;
+  text-align: center;
+  width: 24rem;
 }

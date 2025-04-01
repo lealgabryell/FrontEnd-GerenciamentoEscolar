@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { data, useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'universal-cookie'
 
 export default function TarefasEditar() {
@@ -39,7 +39,10 @@ export default function TarefasEditar() {
       }
     })
       .then((res) => res.json())
-      .then((data) => setDisciplinas(data))
+      .then((data) => {
+        setDisciplinas(data);
+        setTitulo(data.titulo);
+      })
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
   }, []);
 
@@ -50,7 +53,8 @@ export default function TarefasEditar() {
       }
     })
       .then((res) => res.json())
-      .then((data) => setTurmas(data))
+      .then((data) =>
+        setTurmas(data))
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
   }, []);
 

@@ -27,19 +27,21 @@ function ProfessoresHome() {
   }, [token])
   return (
     <div className='container'>
-      <h1>Lobby de Professores</h1>
-      <button className="cadastra-button">Cadastrar</button>
+      <div>
+        <h1>Lobby de Professores</h1>
+        <button className="cadastrar-button">Cadastrar</button>
+      </div>
       {professores.length == 0 ? <p>Não há professores registrados no sistema!</p> :
         <div className="professores">
           {professores.map((professor, index) => (
             <div className="card" key={index}>
               <div className="card-container">
-                <h5>Nome:</h5> <p>{professor.nome}</p>
-                <h5>Email:</h5> <p>{professor.email}</p>
-                <h5>Disciplinas: </h5> {professor.disciplinas.length == 0 ? "Professor sem disciplinas" :
+                <p>Nome:</p> <h5>{professor.nome}</h5>
+                <p>Email:</p> <h5>{professor.email}</h5>
+                <p>Disciplinas: </p> {professor.disciplinas.length == 0 ? <h5>Professor sem disciplinas</h5> :
                   <ul>
                     {professor.disciplinas.map((disciplina, index) => (
-                      <li key={index}>{disciplina.nome}</li>
+                      <li key={index}><h5>{disciplina.nome}</h5></li>
                     ))}
                   </ul>}
                 <button className="edit-button-style">Editar</button>
