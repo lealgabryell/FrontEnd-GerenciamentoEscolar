@@ -27,6 +27,7 @@ export default function TarefasEditar() {
         .then((res) => res.json())
         .then((data) => {
           setTurmasIds(data.turmas?.map(turma => turma._id) || []);
+          setTitulo(data.titulo)
           setDisciplinasIds(data.disciplinas?.map(disciplina => disciplina._id) || []);
           setConcluida(data.concluida);
           setTarefa(data)
@@ -44,7 +45,6 @@ export default function TarefasEditar() {
       .then((res) => res.json())
       .then((data) => {
         setDisciplinas(data);
-        setTitulo(data.titulo);
       })
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
   }, []);

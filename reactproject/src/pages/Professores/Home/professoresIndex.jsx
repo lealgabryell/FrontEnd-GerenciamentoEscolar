@@ -11,6 +11,8 @@ function ProfessoresHome() {
   const token = cookies.get("authToken");
   const [professores, setProfessores] = useState([]);
   const [error, setError] = useState("");
+ 
+
   useEffect(() => {
     try {
       fetch("http://localhost:3000/api/professor", {
@@ -40,11 +42,18 @@ function ProfessoresHome() {
             <div className="card" key={index}>
               <div className="card-container">
                 <p>Nome:</p> <h5>{professor.nome}</h5>
+                <p>idade:</p> <h5>{professor.idade}</h5>
                 <p>Email:</p> <h5>{professor.email}</h5>
                 <p>Disciplinas: </p> {professor.disciplinas.length == 0 ? <h5>Professor sem disciplinas</h5> :
                   <ul>
                     {professor.disciplinas.map((disciplina, index) => (
                       <li key={index}><h5>{disciplina.nome}</h5></li>
+                    ))}
+                  </ul>}
+                <p>Turmas: </p> {professor.turmas.length == 0 ? <h5>Professor sem turmas</h5> :
+                  <ul>
+                    {professor.turmas.map((turma, index) => (
+                      <li key={index}><h5>{turma.nome}</h5></li>
                     ))}
                   </ul>}
                 <button className='edit-button-style' onClick={() => navigate(`/professores/editar/${professor._id}`)}>

@@ -10,13 +10,13 @@ function ProfessoresEditar() {
 
   const { id } = useParams();
   const [professor, setProfessor] = useState({});
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState(professor.nome ||"");
+  const [idade, setIdade] = useState(professor.idade || "");
+  const [email, setEmail] = useState(professor.email || "");
   const [turmas, setTurmas] = useState([]);
   const [turmasIds, setTurmasIds] = useState([]);
   const [disciplinas, setDisciplinas] = useState([]);
   const [disciplinasIds, setDisciplinasIds] = useState([]);
-  const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -31,8 +31,9 @@ function ProfessoresEditar() {
         .then((data) => {
           setTurmas(data.turmas?.map(turma => turma._id) || []);
           setDisciplinas(data.disciplinas?.map(disciplina => disciplina._id) || []);
-          setEmail(data.email);
-          setNome(data.nome);
+          setNome(data.nome || ""); // Evita valores undefined
+          setIdade(data.idade || ""); 
+          setEmail(data.email || ""); 
           setProfessor(data)
         })
         .catch((err) => console.error('Erro ao carregar professor:', err));
@@ -51,7 +52,7 @@ function ProfessoresEditar() {
         setDisciplinas(data);
       })
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
-  }, []);
+  }, [token]);
   useEffect(() => {
     fetch('http://localhost:3000/api/turma', {
       headers: {
@@ -62,7 +63,7 @@ function ProfessoresEditar() {
       .then((data) =>
         setTurmas(data))
       .catch((err) => console.error('Erro ao carregar disciplinas:', err));
-  }, []);
+  }, [token]);
 
   const handleDisciplinaChange = (id) => {
     setDisciplinasIds((prev) =>
@@ -76,7 +77,7 @@ function ProfessoresEditar() {
     );
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -89,13 +90,14 @@ function ProfessoresEditar() {
         },
         body: JSON.stringify({
           nome,
+          idade: Number(idade), 
           email,
-          disciplinas,
-          turmas
+          disciplinas: disciplinasIds,
+          turmas: turmasIds
         }),
       });
       if (!response.ok) {
-        throw new Error("Não foi possível cadastrar essa disciplina");
+        throw new Error("Não foi possível atualizar os dados desse professor");
       } else {
         navigate("/professores");
       }
@@ -110,13 +112,20 @@ function ProfessoresEditar() {
         <h4>Preencha os campos abaixo</h4>
       </div>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={() => handleSubmit} className="form-container">
+      <form onSubmit={handleSubmit} className="form-container">
         <label className='label'><h5>Nome:</h5></label>
         <input type="text"
           value={nome}
           className="input-field"
           onChange={(e) => setNome(e.target.value)}
           placeholder={professor.nome || ""}
+          required />
+        <label className='label'><h5>Idade:</h5></label>
+        <input type="text"
+          value={idade}
+          className="input-field"
+          onChange={(e) => setIdade(e.target.value)}
+          placeholder={professor.idade || ""}
           required />
         <label className='label'><h5>Email:</h5></label>
         <input type="email"
