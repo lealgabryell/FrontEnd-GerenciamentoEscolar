@@ -13,10 +13,10 @@ function ProfessoresEditar() {
   const [nome, setNome] = useState(professor.nome ||"");
   const [idade, setIdade] = useState(professor.idade || "");
   const [email, setEmail] = useState(professor.email || "");
-  const [turmas, setTurmas] = useState([]);
-  const [turmasIds, setTurmasIds] = useState([]);
   const [disciplinas, setDisciplinas] = useState([]);
   const [disciplinasIds, setDisciplinasIds] = useState([]);
+  const [turmas, setTurmas] = useState([]);
+  const [turmasIds, setTurmasIds] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -134,24 +134,7 @@ function ProfessoresEditar() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={professor.email || ""}
         />
-        <div className="disciplinas-container">
-          <h4>Selecione as turmas:</h4>
-          {turmas.length > 0 ? (
-            turmas.map((turma) => (
-              <label key={turma._id} className="checkbox-label">
-                <input
-                  type="checkbox"
-                  value={turma._id}
-                  onChange={() => handleTurmaChange(turma._id)}
-                  checked={turmasIds.includes(turma._id)}
-                />
-                {turma.nome} - <a>{turma._id}</a>
-              </label>
-            ))
-          ) : (
-            <p>Carregando turmas...</p>
-          )}
-        </div>
+        
         <div className="disciplinas-container">
           <h4>Selecione as disciplinas:</h4>
           {disciplinas.length > 0 ? (
@@ -168,6 +151,24 @@ function ProfessoresEditar() {
             ))
           ) : (
             <p>Carregando disciplinas...</p>
+          )}
+        </div>
+        <div className="disciplinas-container">
+          <h4>Selecione as turmas:</h4>
+          {turmas.length > 0 ? (
+            turmas.map((turma) => (
+              <label key={turma._id} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  value={turma._id}
+                  onChange={() => handleTurmaChange(turma._id)}
+                  checked={turmasIds.includes(turma._id)}
+                />
+                {turma.nome} - <a>{turma._id}</a>
+              </label>
+            ))
+          ) : (
+            <p>Carregando turmas...</p>
           )}
         </div>
         <button type="submit" className="submit-button">

@@ -10,8 +10,9 @@ function ProfessoresHome() {
   const cookies = new Cookies();
   const token = cookies.get("authToken");
   const [professores, setProfessores] = useState([]);
+  const [turmas, setTurmas] = useState([]);
   const [error, setError] = useState("");
- 
+
 
   useEffect(() => {
     try {
@@ -28,14 +29,30 @@ function ProfessoresHome() {
     } catch (err) {
       setError(err.message)
     }
-  }, [token])
+  }, [token]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/turma", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      setTurmas(data);
+    })
+    .catch((err) => console.error('Erro ao carregar turmas:', err));
+  }, [token]);
+  
   return (
     <div className='container'>
       <div>
         <h1>Lobby de Professores</h1>
         <button className="cadastrar-button">Cadastrar</button>
       </div>
-      
+
       {professores.length == 0 ? <>{error && <p className="error-message">{error}</p>}</> :
         <div className="professores">
           {professores.map((professor, index) => (
@@ -50,12 +67,12 @@ function ProfessoresHome() {
                       <li key={index}><h5>{disciplina.nome}</h5></li>
                     ))}
                   </ul>}
-                <p>Turmas: </p> {professor.turmas.length == 0 ? <h5>Professor sem turmas</h5> :
-                  <ul>
-                    {professor.turmas.map((turma, index) => (
-                      <li key={index}><h5>{turma.nome}</h5></li>
-                    ))}
-                  </ul>}
+                <p>Turmas: </p> {turmas.map((turma, index) => {
+                  
+                  {turma.professor._id == professor._id  ? 
+                  <h5 key={index}>{turma.nome}</h5> : 
+                  <h5>Sem turmas</h5>}
+                })}
                 <button className='edit-button-style' onClick={() => navigate(`/professores/editar/${professor._id}`)}>
                   <a>Editar</a>
                 </button>
